@@ -34,6 +34,7 @@ A mini help desk app that lets users:
 git clone https://github.com/Jinandra/smart-ticket-triage
 cd smart-ticket-triage
 
+---
 
 ## About Laravel
 
