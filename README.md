@@ -7,6 +7,34 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Smart Ticket Triage (Laravel 11 + Vue 3)
+
+A mini help desk app that lets users:
+- Submit free-form support tickets
+- Queue AI classification jobs (via OpenAI)
+- View tagged tickets with category + confidence score
+
+---
+
+## 🚀 Features
+
+- Laravel 11 REST API
+- Vue 3 Composition API frontend (no TypeScript)
+- Queued AI classification using OpenAI
+- Plain CSS (BEM naming)
+- Seeder with 30 demo tickets
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/Jinandra/smart-ticket-triage
+cd smart-ticket-triage
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
