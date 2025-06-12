@@ -28,13 +28,13 @@ A mini help desk app that lets users:
 
 ## ⚙️ Setup Instructions
 
-1. **Clone the repo**
+**Clone the repo**
 
 ```bash
 git clone https://github.com/Jinandra/smart-ticket-triage
 cd smart-ticket-triage
+```
 
----
 
 ## About Laravel
 
