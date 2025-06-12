@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* Form container */
+.ticket-form {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ticket-form,
+.ticket-list {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.ticket-form input,
+.ticket-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+.ticket-form button {
+    padding: 0.6rem 1.2rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ticket-form button:hover {
+    background-color: #2563eb;
+}
+
+.ticket-list__item {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    transition: background 0.3s;
+}
+
+.ticket-list__item--classified {
+    background: #e0ffe0;
+}
+
+.ticket-list__subject {
+    font-weight: bold;
+}
+
+.ticket-list__body {
+    margin: 0.5rem 0;
+}
+
+.ticket-list__meta {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.ticket-list__loading {
+    text-align: center;
+    padding: 1rem;
+}
+
+
+
