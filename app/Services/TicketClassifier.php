@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class TicketClassifier
@@ -16,19 +17,29 @@ class TicketClassifier
             ];
         }
 
-        $response = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo',
-            'messages' => [[
-                'role' => 'user',
-                'content' => "Classify the following ticket:\n\nSubject: $subject\n\nBody: $body\n\nReturn only category and confidence as JSON."
-            ]],
-        ]);
+        try {
+            $response = OpenAI::chat()->create([
+                'model' => 'gpt-3.5-turbo',
+                'messages' => [[
+                    'role' => 'user',
+                    'content' => "Classify the following ticket:\n\nSubject: $subject\n\nBody: $body\n\nReturn only category and confidence as JSON."
+                ]]
+            ]);
 
-        $json = json_decode($response->choices[0]->message->content, true);
+            $json = json_decode($response->choices[0]->message->content ?? '', true);
 
-        return [
-            'category' => $json['category'] ?? 'General',
-            'confidence' => $json['confidence'] ?? 0.7,
-        ];
+            return [
+                'category' => $json['category'] ?? 'General',
+                'confidence' => $json['confidence'] ?? 0.7,
+            ];
+
+        } catch (\Throwable $e) {
+            Log::error('OpenAI classification failed: ' . $e->getMessage());
+
+            return [
+                'category' => 'General',
+                'confidence' => 0.0,
+            ];
+        }
     }
 }

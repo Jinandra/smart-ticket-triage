@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\ClassifyTicketJob;
 use App\Models\Ticket;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\RateLimiter;
 
 class BulkClassifyTickets extends Command
 {
@@ -35,8 +36,15 @@ class BulkClassifyTickets extends Command
         }
 
         foreach ($tickets as $ticket) {
-            dispatch(new ClassifyTicketJob($ticket));
-            $this->line("Queued classification for ticket #{$ticket->id}");
+            $key = 'classify-ticket-' . $ticket->id;
+
+            if (RateLimiter::remaining($key, 1)) {
+                RateLimiter::hit($key, 60); // 1 per 60 seconds per ticket ID
+                ClassifyTicketJob::dispatch($ticket);
+                $this->info("Queued classification for ticket ID {$ticket->id}");
+            } else {
+                $this->warn("Rate limit hit for ticket ID {$ticket->id}, skipping...");
+            }
         }
 
         $this->info("Done. {$tickets->count()} ticket(s) queued for classification.");

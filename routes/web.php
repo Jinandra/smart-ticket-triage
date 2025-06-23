@@ -7,4 +7,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', fn() => view('tickets'));
+Route::get('/', fn() => view('tickets'))->name('tickets');
+Route::get('/stats', [TicketController::class, 'stats'])->name('stats');
+

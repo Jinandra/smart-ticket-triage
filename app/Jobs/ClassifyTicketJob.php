@@ -25,6 +25,15 @@ class ClassifyTicketJob implements ShouldQueue
      */
     public function handle(TicketClassifier $classifier): void {
         $result = $classifier->classify($this->ticket->subject, $this->ticket->body);
-        $this->ticket->update($result);
+
+        if ($this->ticket->category_manual) {
+            // Preserve category, only update explanation & confidence
+            $this->ticket->update([
+                'explanation' => $result['explanation'] ?? null,
+                'confidence' => $result['confidence'] ?? null,
+            ]);
+        } else {
+            $this->ticket->update($result);
+        }
     }
 }

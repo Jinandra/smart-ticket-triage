@@ -44,6 +44,20 @@
     outline: none;
 }
 
+.ticket-form select {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.ticket-form select:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+
 .ticket-form button {
     padding: 0.6rem 1.2rem;
     background-color: #3b82f6;
@@ -70,10 +84,6 @@
     background: #e0ffe0;
 }
 
-.ticket-list__subject {
-    font-weight: bold;
-}
-
 .ticket-list__body {
     margin: 0.5rem 0;
 }
@@ -87,6 +97,7 @@
     text-align: center;
     padding: 1rem;
 }
+
 
 
 
